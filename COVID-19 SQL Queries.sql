@@ -1,22 +1,22 @@
---COVID-19
+--COVID-19 Data Analysis
 
 --TOTAL POPULATION
 DROP TABLE IF EXISTS #TempTable
 -- temporary table with population per location
 CREATE TABLE #TempTable (
-    Location VARCHAR(255),
-    MaxPopulation BIGINT
+Â  Â  Location VARCHAR(255),
+Â  Â  MaxPopulation BIGINT
 )
 
 INSERT INTO #TempTable
-SELECT location, MAX(population) 
-FROM DAProject..CovidDeaths 
-where continent is not null and 
-      location not in ('Africa', 'Asia', 'World', 'Europe', 'European Union', 
-	                   'International','North America', 'Oceania', 'South America')
+SELECT location, MAX(population)Â 
+FROM DAProject..CovidDeathsÂ 
+where continent is not null andÂ 
+Â  Â  Â  location not in ('Africa', 'Asia', 'World', 'Europe', 'European Union',Â 
+	Â  Â  Â  Â  Â  Â  Â  Â  Â  Â 'International','North America', 'Oceania', 'South America')
 GROUP BY location
 
-SELECT SUM(MaxPopulation) AS Total_Population 
+SELECT SUM(MaxPopulation) AS Total_PopulationÂ 
 FROM #TempTable
 
 --TOTAL POPULATION Per Country
